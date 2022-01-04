@@ -1,0 +1,14 @@
+.ChoiceContainer{
+    position: absolute;
+    top: 93px;
+    left: 10%;
+    padding: 5rem;
+}
+.ChoiceLink{
+    text-decoration: none;
+}
+.ChoiceText{
+    color: rgb(255, 0, 0);
+    font-weight: 500;
+    font-size: 30px;
+}
