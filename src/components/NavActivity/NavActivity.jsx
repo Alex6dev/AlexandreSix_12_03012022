@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import React from 'react';
 import './NavActivity.css'
 import IconYoga from '../../assets/IconYoga.png';
 import IconSwimming from '../../assets/IconSwimming.png';

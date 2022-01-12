@@ -1,0 +1,30 @@
+.containerNutrition{
+    width: 18%;
+    margin-top: 2rem;
+    padding-left: 1rem;
+   
+}
+.containerTypeNutrition{
+    background-color: #FBFBFB;
+    padding: 1rem;
+    margin-bottom: 3rem; 
+    display: flex;
+    flex-direction: row;
+}
+.containerText{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+.textValueNutrition{
+    font-weight: 700;
+    font-size: 18px;
+}
+.textTypeNutrition{
+    font-size: 12px;
+    font-weight: 500; 
+}
+
+.imgNutrition{
+    width: 30%;
+}

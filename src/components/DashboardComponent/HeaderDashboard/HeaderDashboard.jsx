@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import React from 'react'; 
 import styled from 'styled-components';
 
 let USER_MAIN_DATA =[

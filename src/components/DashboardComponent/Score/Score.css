@@ -1,0 +1,11 @@
+.containerScore{
+    width:25%;
+    height: 225px;
+    margin-top: -10rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    background-color: #fbfbfb;
+}
+.LegendScore{
+    margin-top: -13rem;
+}

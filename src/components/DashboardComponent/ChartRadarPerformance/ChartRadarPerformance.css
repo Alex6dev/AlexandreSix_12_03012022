@@ -1,0 +1,8 @@
+.ChartRadarPerformanceContainer{
+    width: 25%;
+    height: 225px;
+    margin-top:-10rem;
+    margin-left: 1rem;
+    background-color: #282D30;
+    border-radius: 5px; 
+}

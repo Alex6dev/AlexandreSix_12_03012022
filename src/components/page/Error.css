@@ -1,0 +1,23 @@
+.ErrorContainer{
+    position: absolute;
+    top: 93px;
+    left: 10%;
+    width: 90%;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ErrorTitle{
+    font-size:200px;
+    margin: 2rem 0 0 0;
+    color:rgb(255, 0, 0);
+}
+.ErrorText{
+    color: rgb(255, 0, 0);
+    font-size: 30px;
+}
+.ErrorLink{
+    color: rgb(255, 0, 0);
+}
