@@ -17,10 +17,10 @@ class User extends Component {
         <main>
           <NavActivity />
           <Switch>
-            <Route path="/user/:id" render={(props)=><Dashboard {...props}/>}/>
+            <Route path="/userDashboard/:id" render={(props)=><Dashboard {...props}/>}/>
             <Route exact path="/" component={Choice}/>
             <Route path="*" component={Error}/>
-          </Switch>
+          </Switch> 
         </main>
         
       </Router>   

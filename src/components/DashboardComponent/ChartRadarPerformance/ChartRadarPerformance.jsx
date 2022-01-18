@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
 import './ChartRadarPerformance.css' 
 
 const data = [
@@ -105,7 +105,7 @@ class ChartRadarPerformance extends Component {
                         outerRadius="60%" 
                         data={data[0].data}
                         >
-                        <PolarGrid />
+                        <PolarGrid radialLines={false}/>
                         <PolarAngleAxis 
                             dataKey="kind" 
                             tickFormatter={tickKind}

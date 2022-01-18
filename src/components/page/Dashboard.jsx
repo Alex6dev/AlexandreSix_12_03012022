@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component,useState,useEffect,useParams } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import Error from './Error';
@@ -8,36 +8,10 @@ import ChartSessionDuration from '../DashboardComponent/ChartSessionDuration/Cha
 import NutritionTable from '../DashboardComponent/NutritionTable/NutritionTable'
 import ChartRadarPerformance from '../DashboardComponent/ChartRadarPerformance/ChartRadarPerformance';
 import Score from '../DashboardComponent/Score/Score';
-class Dashboard extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      error: null,
-      isLoaded: false,
-      dataId: []  
-    }
-  }
-  componentDidMount() {
-    const {id}= this.props.match.params
-    fetch(process.env.PUBLIC_URL + "/dataUser.json")
-        .then((res) => res.json())
-        .then( (result) => {
-            this.setState({
-                isLoaded: true,
-                dataId: result.filter(elt=> elt.id==id)
-            })}, 
-                
-            (error) => {
-              this.setState({
-                  isLoaded: true,
-                  error
-              })
-            },
-            
-        )
-  }
+import callApiFunction from '../../CallApi/callApi.jsx'; 
+console.log(callApiFunction())
+class Dashboard extends Component { 
   render(){
-    const dataUser=this.state.dataId[0]
     const DashboardContainer= styled.section`
       position: absolute;
       
@@ -52,11 +26,15 @@ class Dashboard extends Component {
       flex-wrap:wrap;
 
     `
-
-    if(dataUser){
-      return ( 
+    
+    /*const {id}= this.props.match.params
+    console.log(id)
+    const data =callApiFunction(`./dataAverage.json`,id)
+    console.log(data)
+    */
+    return ( 
         <DashboardContainer>
-          <HeaderDashboard user={dataUser}/>
+          <HeaderDashboard />
           <DashboardContainerBarChart>
             <ChartDailyActivity />
             <NutritionTable />
@@ -64,15 +42,10 @@ class Dashboard extends Component {
             <ChartRadarPerformance />
             <Score/>
           </DashboardContainerBarChart>
-              
-        </DashboardContainer>     
+                
+        </DashboardContainer>  
+   
       )
-    }else{
-      return(
-      <Error/>
-      );
-
-    }
   }
 
 }

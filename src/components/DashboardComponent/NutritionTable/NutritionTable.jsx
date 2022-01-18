@@ -45,7 +45,7 @@ class NutritionTable extends Component {
             case'calorieCount':
                 return (
                     <>
-                        <img src={IconCalorie} className='imgNutrition'/>
+                        <img src={IconCalorie} className='imgNutrition' alt="Icone flamme rouge"/>
                         <div className='containerText'>
                             <p className='textValueNutrition'>{value}kCarl</p>
                             <p className='textTypeNutrition'> Calories</p>
@@ -57,7 +57,7 @@ class NutritionTable extends Component {
             case'proteinCount':
                 return (
                     <>
-                        <img src={IconProtein} className='imgNutrition'/>
+                        <img src={IconProtein} className='imgNutrition' alt="Icone viande bleu"/>
                         <div className='containerText'>
                             <p className='textValueNutrition'>{value}g</p>
                             <p className='textTypeNutrition'> Protein</p>
@@ -69,7 +69,7 @@ class NutritionTable extends Component {
             case'carbohydrateCount':
                 return (
                     <>
-                        <img src={IconGlucides} className='imgNutrition'/>
+                        <img src={IconGlucides} className='imgNutrition' alt="Icone pomme jaune"/>
                         <div className='containerText'>
                             <p className='textValueNutrition'>{value}g</p>
                             <p className='textTypeNutrition'> Glucides</p>
@@ -81,7 +81,7 @@ class NutritionTable extends Component {
             case'lipidCount':
                 return (
                     <>
-                        <img src={IconLipides} className='imgNutrition'/>
+                        <img src={IconLipides} className='imgNutrition' alt="Icone hamburger"/>
                         <div className='containerText'>
                             <p className='textValueNutrition'>{value}g</p>
                             <p className='textTypeNutrition'>Lipides</p>

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,} from 'recharts';
 import './ChartSessionDuration.css'
 
 const dataa = [
@@ -121,10 +121,19 @@ class ChartSessionDuration extends Component {
                         />    
                         <YAxis 
                             hide
-                            domain={['dataMin-10', 'dataMax+1']}
+                            domain={["dataMin-10", 'dataMax + 10']}
                         />
-                        <Tooltip content={<CustomTooltip/>} cursor={{stroke:'none'}}/>
-                        <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} strokeWidth={3}/>
+                        <Tooltip 
+                            content={<CustomTooltip/>} 
+                            cursor={{stroke:'none'}}
+                        />
+                        <Line 
+                            type="monotone" 
+                            dataKey="sessionLength" 
+                            stroke="#FFFFFF" 
+                            dot={false} 
+                            strokeWidth={3} 
+                        />
                     </LineChart>
                 </ResponsiveContainer>
             </div>

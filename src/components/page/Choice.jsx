@@ -10,10 +10,10 @@ class Choice extends Component {
         <>
         <section className='ChoiceContainer'>
           <nav>
-            <Link to='/user/12' className='ChoiceLink'>
+            <Link to='/userDashboard/12' className='ChoiceLink'>
               <p className='ChoiceText'>User 12</p>
             </Link>
-            <Link to='/user/18' className='ChoiceLink'>
+            <Link to='/userDashboard/18' className='ChoiceLink'>
               <p className='ChoiceText'>User 18</p>
             </Link>
           </nav>
