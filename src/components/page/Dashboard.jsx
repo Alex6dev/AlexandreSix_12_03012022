@@ -1,5 +1,5 @@
-import { Component,useState,useEffect,useParams } from 'react';
-import React from 'react';
+import React,{ useContext} from 'react';
+import { DashboardContext} from '../../CallApi/callApi.jsx';
 import styled from 'styled-components';
 import Error from './Error';
 import ChartDailyActivity from '../DashboardComponent/ChartDailyActivity/ChartDailyActivity'
@@ -8,49 +8,52 @@ import ChartSessionDuration from '../DashboardComponent/ChartSessionDuration/Cha
 import NutritionTable from '../DashboardComponent/NutritionTable/NutritionTable'
 import ChartRadarPerformance from '../DashboardComponent/ChartRadarPerformance/ChartRadarPerformance';
 import Score from '../DashboardComponent/Score/Score';
-import callApiFunction from '../../CallApi/callApi.jsx'; 
-console.log(callApiFunction())
-class Dashboard extends Component { 
-  render(){
-    const DashboardContainer= styled.section`
-      position: absolute;
-      
-      top: 93px;
-      left: 10%;
-      padding:1rem;
-      width:86.5%;
-    ` 
-    const DashboardContainerBarChart= styled.div`
-      display:flex;
-      flex-direction:row;
-      flex-wrap:wrap;
+import {DashboardContextProvider} from '../../CallApi/callApi.jsx' ;
 
+/**show Page Dashboard 
+ * 
+ * @returns {JSX}
+ */
+
+ export default function Dashboard(){
+  const DashboardContainer= styled.section`
+    position: absolute;    
+    top: 93px;
+    left: 10%;
+    padding:1rem;
+    width:86.5%;
+  ` 
+  const DashboardContainerBarChart= styled.div`
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
     `
-    
-    /*const {id}= this.props.match.params
-    console.log(id)
-    const data =callApiFunction(`./dataAverage.json`,id)
-    console.log(data)
-    */
+  const context=useContext(DashboardContext)
+  const {user, activity, averageSessions, performance, apiError}=context
+  
+  if(user){
     return ( 
+      <DashboardContextProvider>
         <DashboardContainer>
-          <HeaderDashboard />
+          <HeaderDashboard dataUser={user}/>
           <DashboardContainerBarChart>
-            <ChartDailyActivity />
-            <NutritionTable />
-            <ChartSessionDuration />
-            <ChartRadarPerformance />
-            <Score/>
-          </DashboardContainerBarChart>
-                
+            <ChartDailyActivity dataActivity={activity}/>
+            <NutritionTable dataUser={user}/>
+            <ChartSessionDuration dataSessions={averageSessions}/>
+            <ChartRadarPerformance dataPerformance={performance}/>
+            <Score dataUser={user}/>
+          </DashboardContainerBarChart>              
         </DashboardContainer>  
-   
-      )
+      </DashboardContextProvider>
+    )   
+
+  }else if(apiError){
+    return(<Error/>)
+  }else{
+    return(
+      <div>
+        <p>chargement</p> 
+      </div>   
+    )
   }
-
 }
-
-export default Dashboard;
-/*
-
-*/

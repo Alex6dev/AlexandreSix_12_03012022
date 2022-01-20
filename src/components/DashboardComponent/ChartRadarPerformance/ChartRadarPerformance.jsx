@@ -1,89 +1,17 @@
-import { Component } from 'react';
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
 import './ChartRadarPerformance.css' 
+import propTypes from 'prop-types';
 
-const data = [
-    {
-        userId: 12,
-        kind: {
-            1: 'cardio',
-            2: 'energy',
-            3: 'endurance',
-            4: 'strength',
-            5: 'speed',
-            6: 'intensity'
-        },
-        data: [
-            {
-                value: 80,
-                kind: 1
-            },
-            {
-                value: 120,
-                kind: 2
-            },
-            {
-                value: 140,
-                kind: 3
-            },
-            {
-                value: 50,
-                kind: 4
-            },
-            {
-                value: 200,
-                kind: 5
-            },
-            {
-                value: 90,
-                kind: 6
-            }
-        ]
-    },
-    {
-        userId: 18,
-        kind: {
-            1: 'cardio',
-            2: 'energy',
-            3: 'endurance',
-            4: 'strength',
-            5: 'speed',
-            6: 'intensity'
-        },
-        data: [
-            {
-                value: 200,
-                kind: 1
-            },
-            {
-                value: 240,
-                kind: 2
-            },
-            {
-                value: 80,
-                kind: 3
-            },
-            {
-                value: 80,
-                kind: 4
-            },
-            {
-                value: 220,
-                kind: 5
-            },
-            {
-                value: 110,
-                kind: 6
-            }
-        ]
-    }
-]
-  
-class ChartRadarPerformance extends Component {
-
-    render(){
-        const kindTab=[
+/**show chart radar performance
+ * 
+ * @param {Object} props 
+ * @param {Array} props.dataPerformance 
+ * @returns {JSX}
+ */
+ export default function ChartRadarPerformance(props){
+    const performance=props.dataPerformance;
+    const kindTab=[
             'Cardio',
             'Energie',
             'Endurance',
@@ -91,8 +19,8 @@ class ChartRadarPerformance extends Component {
             'Vitesse',
             'Intensité'
         ]
-        const tickKind=(value)=>kindTab[value-1]    
-        
+    const tickKind=(value)=>kindTab[value-1]    
+    if(performance){
         return (  
             <div className='ChartRadarPerformanceContainer'>
                 <ResponsiveContainer
@@ -103,7 +31,7 @@ class ChartRadarPerformance extends Component {
                         cx="48%" 
                         cy="50%" 
                         outerRadius="60%" 
-                        data={data[0].data}
+                        data={performance}
                         >
                         <PolarGrid radialLines={false}/>
                         <PolarAngleAxis 
@@ -114,7 +42,6 @@ class ChartRadarPerformance extends Component {
                                 fontSize:'0.65rem'
                             }}
                         />
-
                         <Radar 
                             dataKey="value" 
                             fill="#FF0101" 
@@ -123,10 +50,18 @@ class ChartRadarPerformance extends Component {
                     </RadarChart>
                 </ResponsiveContainer>
             </div>
+        ) 
+    }else{
+        return(
+            <div>
+                <p>chargement</p> 
+            </div>
         )
-
-    }
-
+    } 
+    
 }
 
-export default ChartRadarPerformance;
+
+ChartRadarPerformance.propTypes = {
+    performance: propTypes.array.isRequired,
+};

@@ -1,45 +1,20 @@
-import { Component } from 'react';
 import React from 'react';
 import './NutritionTable.css';
 import IconCalorie from'../../../assets/IconCalories.png' 
 import IconProtein from'../../../assets/IconProtein.png' 
 import IconGlucides from'../../../assets/IconGlucides.png' 
 import IconLipides from'../../../assets/IconLipides.png' 
+import propTypes from 'prop-types';
 
-const data= [
-    {
-        id: 12,
-        userInfos: {
-            firstName: 'Karl',
-            lastName: 'Dovineau',
-            age: 31,
-        },
-        todayScore: 0.12,
-        keyData: {
-            calorieCount: 1930,
-            proteinCount: 155,
-            carbohydrateCount: 290,
-            lipidCount: 50
-        }
-    },
-    {
-        id: 18,
-        userInfos: {
-            firstName: 'Cecilia',
-            lastName: 'Ratorez',
-            age: 34,
-        },
-        score: 0.3,
-        keyData: {
-            calorieCount: 2500,
-            proteinCount: 90,
-            carbohydrateCount: 150,
-            lipidCount: 120
-        }
-    }
-]
-class NutritionTable extends Component {
-  render(){ 
+/** show card nutrition
+ * 
+ * @param {object} props 
+ * @param {object} props.dataUser 
+ * @returns {JSX}
+ */
+
+export default function NutritionTable(props){
+    const user =props.dataUser
     function displayCardNutrition(type,value){
         switch (type){
             case'calorieCount':
@@ -92,25 +67,32 @@ class NutritionTable extends Component {
         }
 
     }
-    return ( 
-        <div className='containerNutrition'>
-            <div className='containerTypeNutrition'>
-                {displayCardNutrition('calorieCount',data[0].keyData.calorieCount)}
-            </div> 
-            <div className='containerTypeNutrition'>
-                {displayCardNutrition('proteinCount',data[0].keyData.proteinCount)}
-            </div>
-            <div className='containerTypeNutrition'>
-                {displayCardNutrition('carbohydrateCount',data[0].keyData.carbohydrateCount)}
-            </div> 
-            <div className='containerTypeNutrition'>
-                {displayCardNutrition('lipidCount',data[0].keyData.lipidCount)}
-            </div>   
-        </div>
-    )
-   
-  }
-
+    if(user){
+        return(
+            <div className='containerNutrition'>
+                <div className='containerTypeNutrition'>
+                    {displayCardNutrition('calorieCount',user.keyData.calorieCount)}
+                </div> 
+                <div className='containerTypeNutrition'>
+                    {displayCardNutrition('proteinCount',user.keyData.proteinCount)}
+                </div>
+                <div className='containerTypeNutrition'>
+                    {displayCardNutrition('carbohydrateCount',user.keyData.carbohydrateCount)}
+                </div> 
+                <div className='containerTypeNutrition'>
+                    {displayCardNutrition('lipidCount',user.keyData.lipidCount)}
+                </div>   
+            </div>    
+        )
+    }else{
+        return ( 
+            <div>
+                <p>chargement</p> 
+            </div>        
+        )
+    }
 }
 
-export default NutritionTable;
+NutritionTable.propTypes = {
+    user: propTypes.object.isRequired,
+};
