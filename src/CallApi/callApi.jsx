@@ -3,9 +3,8 @@ import React from "react";
 import propTypes from 'prop-types';
 import { useParams } from "react-router-dom";
 
-const currentUser= 12
+let currentUser= 12
 const apiUrl=`http://localhost:3010`; 
-const simDataLoadingTime=0;
 
 //create context whithout Data
 
@@ -18,34 +17,32 @@ export const DashboardContext = createContext()
  */
 export const DashboardContextProvider=({ children })=>{ 
     const {id}=useParams()
-    console.log(id)        
+    console.log(id)     
+    currentUser=id   
     const [user, setUser] = useState()
     const [activity, setActivity] = useState()
     const [averageSessions, setAverageSessions] = useState()
     const [performance, setPerformance] = useState()
     const [apiError, setApiError] = useState(false)
 
-    /*if(id){*/
-        const getUser = () => {
+    if(id){
+
+
+        useEffect(() => {
             fetch(`${apiUrl}/user/${currentUser}`)
                 .then((response => response.json()))
                 .then(data => setUser(data.data))
-                .catch((error) => setApiError(true))
-        }
-
-        useEffect(() => {
-            if (simDataLoadingTime === 0) getUser()
-            else setTimeout(getUser, simDataLoadingTime)
+                .catch((error) => setApiError(true))    
         }, [])
 
-        const getUserActivity = () => {
+        function getUserActivity(){
             fetch(`${apiUrl}/user/${user.id}/activity`)
                 .then((response => response.json()))
                 .then(data => setActivity(data.data.sessions))
                 .catch((error) => setApiError(true))
         }
 
-        const getUserAverageSessions = () => {
+        function getUserAverageSessions(){
             fetch(`${apiUrl}/user/${user.id}/average-sessions`)
                 .then((response => response.json()))
                 .then(data => setAverageSessions(data.data.sessions))
@@ -53,7 +50,7 @@ export const DashboardContextProvider=({ children })=>{
         }
 
 
-        const getUserPerformance = () => {
+        function getUserPerformance (){
             fetch(`${apiUrl}/user/${user.id}/performance`)
                 .then((response => response.json())) 
                 .then(data => {
@@ -63,24 +60,20 @@ export const DashboardContextProvider=({ children })=>{
         }
 
         useEffect(() => {
-            if (!user) return
-            const getUserData = () => {
+            if(user){
                 getUserActivity()
                 getUserAverageSessions()
                 getUserPerformance()
-            }
-            if (simDataLoadingTime === 0) getUserData()
-            else setTimeout(getUserData, simDataLoadingTime)
+            }else{console.log("pas bon")}
         }, [user])
 
         
-   /* }else{
-    }*/
+   }
     return (
             <DashboardContext.Provider value={{user, activity, averageSessions, performance, apiError}}>
                 {children}
             </DashboardContext.Provider>
-        )
+        ) 
 }
 DashboardContextProvider.propTypes = {
     children: propTypes.element.isRequired

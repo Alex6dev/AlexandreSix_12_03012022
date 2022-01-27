@@ -75,6 +75,7 @@ import propTypes from 'prop-types';
             </ResponsiveContainer>
         </div>
         )
+
     }else{
         return(
             <div>
@@ -85,7 +86,6 @@ import propTypes from 'prop-types';
     
 
 }
-
 
 ChartSessionDuration.propTypes = {
     averageSessions: propTypes.array.isRequired,

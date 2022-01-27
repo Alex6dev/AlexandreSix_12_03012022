@@ -1,9 +1,9 @@
 # Project 12 - SportSee
-<img src="./assets/state-in-progress.svg" alt="badges"/>
+<img src="https://github.com/Alex6dev/AlexandreSix_12_03012022/blob/main/src/assets/state-in-progress.svg" alt="badges"/>
 
 ## 1-Description
 create an analytics dashboard in a web page with a user id in communication with a back-end using NodeJS
-<img src='./assets/CaptureDecran.png' alt="screenshot"/>
+<img src='https://github.com/Alex6dev/AlexandreSix_12_03012022/blob/main/src/assets/CaptureDecran.png' alt="screenshot"/>
 
 ## 2- Project
 

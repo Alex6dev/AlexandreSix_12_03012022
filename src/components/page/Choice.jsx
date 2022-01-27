@@ -8,7 +8,7 @@ import './Choice.css'
  */
 
  export default function Choice(){
-  return ( 
+  return (  
     <>
       <section className='ChoiceContainer'>
         <nav>
