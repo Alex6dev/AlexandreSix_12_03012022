@@ -63,5 +63,5 @@ import propTypes from 'prop-types';
 
 
 ChartRadarPerformance.propTypes = {
-    performance: propTypes.array.isRequired,
+    dataPerformance: propTypes.array.isRequired,
 };

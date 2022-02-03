@@ -1,5 +1,5 @@
 import React,{ useContext} from 'react';
-import { DashboardContext} from '../../CallApi/callApi.jsx';
+import {DashboardContext} from '../../CallApi/callApi.jsx';
 import styled from 'styled-components';
 import Error from './Error';
 import ChartDailyActivity from '../DashboardComponent/ChartDailyActivity/ChartDailyActivity'
@@ -9,7 +9,7 @@ import NutritionTable from '../DashboardComponent/NutritionTable/NutritionTable'
 import ChartRadarPerformance from '../DashboardComponent/ChartRadarPerformance/ChartRadarPerformance';
 import Score from '../DashboardComponent/Score/Score';
 
-/**show Page Dashboard 
+/**show Dashboard Content
  * 
  * @returns {JSX}
  */
@@ -17,13 +17,16 @@ import Score from '../DashboardComponent/Score/Score';
  export default function DashboardContent(){
   const DashboardContainer= styled.section`
     position: absolute;    
-    top: 93px;
+    top: 95px;
     left: 10%;
     padding:1rem;
-    width:86.5%;
+    width:86%;
+    height:80%;  
   ` 
   const DashboardContainerBarChart= styled.div`
     display:flex;
+    width:100%;
+    height:90%;
     flex-direction:row;
     flex-wrap:wrap;
     `
@@ -32,16 +35,16 @@ import Score from '../DashboardComponent/Score/Score';
   
   if(user){
     return ( 
-        <DashboardContainer>
-          <HeaderDashboard dataUser={user}/>
-          <DashboardContainerBarChart>
-            <ChartDailyActivity dataActivity={activity}/>
-            <NutritionTable dataUser={user}/>
-            <ChartSessionDuration dataSessions={averageSessions}/>
-            <ChartRadarPerformance dataPerformance={performance}/>
-            <Score dataUser={user}/>
-          </DashboardContainerBarChart>              
-        </DashboardContainer>
+      <DashboardContainer>
+        {user && (<HeaderDashboard dataUser={user}/>)}
+        <DashboardContainerBarChart>
+          {activity && (<ChartDailyActivity dataActivity={activity}/>)}
+          {user &&(<NutritionTable dataUser={user}/>)}
+          { averageSessions && (<ChartSessionDuration dataSessions={averageSessions}/>)}
+          {performance && (<ChartRadarPerformance dataPerformance={performance}/>)}
+          {user && (<Score dataUser={user}/>)}
+        </DashboardContainerBarChart>              
+      </DashboardContainer>
     )   
 
   }else if(apiError){

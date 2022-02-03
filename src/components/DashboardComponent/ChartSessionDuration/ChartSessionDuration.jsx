@@ -39,7 +39,7 @@ import propTypes from 'prop-types';
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart 
                     width={730}
-                    height={250}
+                    height={250} 
                     data={averageSessions}
                     margin={{
                         top: 5, 
@@ -88,5 +88,5 @@ import propTypes from 'prop-types';
 }
 
 ChartSessionDuration.propTypes = {
-    averageSessions: propTypes.array.isRequired,
+    dataSessions: propTypes.array.isRequired,
 };

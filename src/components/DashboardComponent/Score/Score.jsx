@@ -66,7 +66,7 @@ import propTypes from 'prop-types';
     
     function legendScore(){
       return <p className='LegendScore'>Score</p>
-    }
+    } 
     return(
       <div className='containerScore' > 
       <ResponsiveContainer 
@@ -125,5 +125,5 @@ import propTypes from 'prop-types';
 
 
 Score.propTypes = {
-  user: propTypes.array.isRequired,
+  dataUser: propTypes.object.isRequired,
 };

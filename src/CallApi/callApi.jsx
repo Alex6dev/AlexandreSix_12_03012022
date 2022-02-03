@@ -2,8 +2,8 @@ import {createContext, useEffect, useState} from "react"
 import React from "react";  
 import propTypes from 'prop-types';
 import { useParams } from "react-router-dom";
+import axios from 'axios' 
 
-let currentUser= 12
 const apiUrl=`http://localhost:3010`; 
 
 //create context whithout Data
@@ -17,33 +17,32 @@ export const DashboardContext = createContext()
  */
 export const DashboardContextProvider=({ children })=>{ 
     const {id}=useParams()
-    console.log(id)     
-    currentUser=id   
     const [user, setUser] = useState()
     const [activity, setActivity] = useState()
     const [averageSessions, setAverageSessions] = useState()
     const [performance, setPerformance] = useState()
     const [apiError, setApiError] = useState(false)
 
+
     if(id){
-
-
+        
+        /*
         useEffect(() => {
-            fetch(`${apiUrl}/user/${currentUser}`)
-                .then((response => response.json()))
-                .then(data => setUser(data.data))
-                .catch((error) => setApiError(true))    
+            fetch(`${apiUrl}/user/${id}`)
+                .then((response =>response.json()))
+                .then(data => setUser(data.data)) 
+                .catch((error) => setApiError(true))     
         }, [])
-
+        console.log(apiError)
         function getUserActivity(){
-            fetch(`${apiUrl}/user/${user.id}/activity`)
+            fetch(`${apiUrl}/user/${id}/activity`)
                 .then((response => response.json()))
                 .then(data => setActivity(data.data.sessions))
                 .catch((error) => setApiError(true))
         }
 
         function getUserAverageSessions(){
-            fetch(`${apiUrl}/user/${user.id}/average-sessions`)
+            fetch(`${apiUrl}/user/${id}/average-sessions`)
                 .then((response => response.json()))
                 .then(data => setAverageSessions(data.data.sessions))
                 .catch((error) => setApiError(true))
@@ -51,23 +50,55 @@ export const DashboardContextProvider=({ children })=>{
 
 
         function getUserPerformance (){
-            fetch(`${apiUrl}/user/${user.id}/performance`)
+            fetch(`${apiUrl}/user/${id}/performance`)
                 .then((response => response.json())) 
                 .then(data => {
                     setPerformance(data.data.data)
                 })
                 .catch((error) => setApiError(true))
         }
-
         useEffect(() => {
             if(user){
                 getUserActivity()
                 getUserAverageSessions()
                 getUserPerformance()
             }else{console.log("pas bon")}
-        }, [user])
-
+        }, [user])*/
         
+        
+        useEffect(() => {
+            axios.get(`${apiUrl}/user/${id}`)
+                .then(response =>{
+                    if(!response.data){throw"no user data"}else{ setUser(response.data.data)}
+                    })  
+                .catch((error)=>setApiError(true))  
+        }, [])
+
+        function getUserActivity(){
+            axios.get(`${apiUrl}/user/${id}/activity`)
+                .then((response => setActivity(response.data.data.sessions)))
+                .catch((error) => setApiError(true))
+        }
+
+        function getUserAverageSessions(){
+            axios.get(`${apiUrl}/user/${id}/average-sessions`)
+                .then((response => setAverageSessions(response.data.data.sessions)))
+                .catch((error) => setApiError(true))
+        }
+
+
+        function getUserPerformance (){
+            axios.get(`${apiUrl}/user/${id}/performance`)
+                .then((response => setPerformance(response.data.data.data))) 
+                .catch((error) => setApiError(true))
+        }
+        useEffect(() => {
+            if(user){
+                getUserActivity()
+                getUserAverageSessions()
+                getUserPerformance()
+            }
+        }, [user])
    }
     return (
             <DashboardContext.Provider value={{user, activity, averageSessions, performance, apiError}}>

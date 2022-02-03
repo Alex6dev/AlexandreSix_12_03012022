@@ -6,6 +6,7 @@ header{
     position: fixed;
     padding: 1rem 0 0 1rem;
     top:0;
+    height: 77px;
 }
 .HeaderLogo{
     width: 178px;

@@ -40,6 +40,6 @@ export default function HeaderDashboard(props){
     
 }
 HeaderDashboard.propTypes = {
-    user: propTypes.object.isRequired,
+    dataUser: propTypes.object.isRequired,
 };
 

@@ -99,5 +99,5 @@ export default function ChartDailyActivity(props){
       
 }
 ChartDailyActivity.propTypes = {
-    activity: propTypes.array.isRequired,
+    dataActivity: propTypes.array.isRequired,
 };
