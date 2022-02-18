@@ -1,5 +1,5 @@
 import React,{ useContext} from 'react';
-import {DashboardContext} from '../../CallApi/callApi.jsx';
+import {DashboardContext} from '../../remote/callApi.jsx';
 import styled from 'styled-components';
 import Error from './Error';
 import ChartDailyActivity from '../DashboardComponent/ChartDailyActivity/ChartDailyActivity'

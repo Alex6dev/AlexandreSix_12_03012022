@@ -1,5 +1,5 @@
 import React from 'react';
-import {DashboardContextProvider} from '../../CallApi/callApi.jsx' ;
+import {DashboardContextProvider} from '../../remote/callApi.jsx' ;
 import DashboardContent from './DashboardContent'
 
 /**show Page Dashboard 
